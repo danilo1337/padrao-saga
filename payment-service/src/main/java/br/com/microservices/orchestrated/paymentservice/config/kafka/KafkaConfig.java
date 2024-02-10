@@ -1,4 +1,4 @@
-package br.com.microservices.orchestrated.paymentservice.config;
+package br.com.microservices.orchestrated.paymentservice.config.kafka;
 
 import com.fasterxml.jackson.databind.ser.std.StringSerializer;
 import lombok.RequiredArgsConstructor;
