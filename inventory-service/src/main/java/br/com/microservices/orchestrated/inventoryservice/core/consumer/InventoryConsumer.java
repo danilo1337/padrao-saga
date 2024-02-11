@@ -1,6 +1,5 @@
 package br.com.microservices.orchestrated.inventoryservice.core.consumer;
 
-import br.com.microservices.orchestrated.inventoryservice.core.service.InventoryService;
 import br.com.microservices.orchestrated.inventoryservice.core.utils.JsonUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
