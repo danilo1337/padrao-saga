@@ -30,4 +30,35 @@ public class EventService {
     public Event save(Event event) {
         return repository.save(event);
     }
+
+    public List<Event> findAll() {
+        return repository.findAllByOrderByCreatedAtDesc();
+    }
+
+    public Event findByFilters(EventFilters filters) {
+        validateEmptyFilters(filters);
+        if (!isEmpty(filters.getOrderId())) {
+            return findByOrderId(filters.getOrderId());
+        } else {
+            return findByTransactionId(filters.getTransactionId());
+        }
+    }
+
+    private void validateEmptyFilters(EventFilters filters) {
+        if (isEmpty(filters.getOrderId()) && isEmpty(filters.getTransactionId())) {
+            throw new ValidationException("OrderID or TransactionID must be informed.");
+        }
+    }
+
+    private Event findByTransactionId(String transactionId) {
+        return repository
+                .findTop1ByTransactionIdOrderByCreatedAtDesc(transactionId)
+                .orElseThrow(() -> new ValidationException("Event not found by transactionId."));
+    }
+
+    private Event findByOrderId(String orderId) {
+        return repository
+                .findTop1ByOrderIdOrderByCreatedAtDesc(orderId)
+                .orElseThrow(() -> new ValidationException("Event not found by orderID."));
+    }
 }
