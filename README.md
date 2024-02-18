@@ -9,3 +9,4 @@ use admin
 show collections
 db.event.find()
 ```
+
